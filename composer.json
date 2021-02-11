@@ -1,0 +1,69 @@
+{
+  "name": "mucts/laravel-swoole",
+  "description": "High performance HTTP server based on Swoole. Speed up your Laravel and Lumen applications.",
+  "keywords": [
+    "swoole",
+    "laravel",
+    "lumen",
+    "performance",
+    "http",
+    "server"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Herry Yao",
+      "email": "yuandeng@aliyun.com"
+    }
+  ],
+  "require": {
+    "php": "^7.2|^8.0",
+    "illuminate/console": "~5.4|~6.0|~7.0|~8.0",
+    "illuminate/contracts": "~5.4|~6.0|~7.0|~8.0",
+    "illuminate/http": "~5.4|~6.0|~7.0|~8.0",
+    "illuminate/support": "~5.4|~6.0|~7.0|~8.0",
+    "predis/predis": "^1.1"
+  },
+  "require-dev": {
+    "laravel/lumen-framework": "~5.4|~6.0|~7.0|~8.0",
+    "phpunit/phpunit": "^9.5",
+    "phpunit/php-code-coverage": "^9.2",
+    "php-coveralls/php-coveralls": "^2.1",
+    "mockery/mockery": "~1.0",
+    "codedungeon/phpunit-result-printer": "^0.30.1",
+    "php-mock/php-mock": "^2.0",
+    "swoole/ide-helper": "@dev"
+  },
+  "autoload": {
+    "files": [
+      "src/Server/helpers.php"
+    ],
+    "psr-4": {
+      "MuCTS\\Http\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MuCTS\\Http\\Tests\\": "tests",
+      "MuCTS\\Http\\Tests\\Fixtures\\Laravel\\App\\": "tests/fixtures/laravel/app"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "MuCTS\\Http\\LaravelServiceProvider"
+      ],
+      "aliases": {
+        "Server": "MuCTS\\Http\\Server\\Facades\\Server",
+        "Table": "MuCTS\\Http\\Server\\Facades\\Table",
+        "Room": "MuCTS\\Http\\Websocket\\Facades\\Room",
+        "Websocket": "MuCTS\\Http\\Websocket\\Facades\\Websocket"
+      }
+    }
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "@php copy_versioned_files.php"
+    ]
+  }
+}
